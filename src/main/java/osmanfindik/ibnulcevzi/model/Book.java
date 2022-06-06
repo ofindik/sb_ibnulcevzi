@@ -1,9 +1,8 @@
 package osmanfindik.ibnulcevzi.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,22 +23,25 @@ public class Book {
 	)
 	private List<Author> authors = new ArrayList<> ();
 	private Status status;
-	private LocalDate borrowedDate;
+	private LocalDateTime borrowedDateTime;
+
+	@Transient
+	private Long borrowDuration;
 
 	public Book () {
 	}
 
-	public Book (Long id, String name, Status status, LocalDate borrowedDate) {
+	public Book (Long id, String name, Status status, LocalDateTime borrowedDateTime) {
 		this.id = id;
 		this.name = name;
 		this.status = status;
-		this.borrowedDate = borrowedDate;
+		this.borrowedDateTime = borrowedDateTime;
 	}
 
-	public Book (String name, Status status, LocalDate borrowedDate) {
+	public Book (String name, Status status, LocalDateTime borrowedDateTime) {
 		this.name = name;
 		this.status = status;
-		this.borrowedDate = borrowedDate;
+		this.borrowedDateTime = borrowedDateTime;
 	}
 
 	public Long getId () {
@@ -74,12 +76,20 @@ public class Book {
 		this.status = status;
 	}
 
-	public LocalDate getBorrowedDate () {
-		return borrowedDate;
+	public LocalDateTime getBorrowedDateTime () {
+		return borrowedDateTime;
 	}
 
-	public void setBorrowedDate (LocalDate borrowedDate) {
-		this.borrowedDate = borrowedDate;
+	public void setBorrowedDateTime (LocalDateTime borrowedDateTime) {
+		this.borrowedDateTime = borrowedDateTime;
+	}
+
+	public Long getBorrowDuration () {
+		return Duration.between (borrowedDateTime, LocalDateTime.now ()).toDays ();
+	}
+
+	public void setBorrowDuration (Long borrowDuration) {
+		this.borrowDuration = borrowDuration;
 	}
 
 	@Override
@@ -89,7 +99,7 @@ public class Book {
 			", name='" + name + '\'' +
 			", authors=" + authors +
 			", status=" + status +
-			", borrowedDate=" + borrowedDate +
+			", borrowedDateTime=" + borrowedDateTime +
 			'}';
 	}
 }

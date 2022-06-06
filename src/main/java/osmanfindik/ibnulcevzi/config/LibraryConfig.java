@@ -10,6 +10,7 @@ import osmanfindik.ibnulcevzi.repository.AuthorRepository;
 import osmanfindik.ibnulcevzi.repository.BookRepository;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class LibraryConfig {
 			Book book1 = new Book (
 				"Test Book 1",
 				Status.AVAILABLE,
-				LocalDate.of (2022, FEBRUARY, 5)
+				LocalDateTime.of (2022, FEBRUARY, 5, 12, 0)
 			);
 			book1.getAuthors ().add (author1);
 			book1.getAuthors ().add (author2);
@@ -36,7 +37,7 @@ public class LibraryConfig {
 			Book book2 = new Book (
 				"Test Book 2",
 				Status.AVAILABLE,
-				LocalDate.of (2021, FEBRUARY, 25)
+				LocalDateTime.of (2021, FEBRUARY, 25, 13, 0)
 			);
 			book2.getAuthors ().add (author2);
 			bookRepository.save (book2);
