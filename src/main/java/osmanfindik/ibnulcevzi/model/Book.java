@@ -85,7 +85,9 @@ public class Book {
 	}
 
 	public Long getBorrowDuration () {
-		return Duration.between (borrowedDateTime, LocalDateTime.now ()).toDays ();
+		return (null != borrowedDateTime) ?
+			Duration.between (borrowedDateTime, LocalDateTime.now ()).toDays () :
+			0;
 	}
 
 	public void setBorrowDuration (Long borrowDuration) {

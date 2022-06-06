@@ -6,6 +6,7 @@ import osmanfindik.ibnulcevzi.model.Book;
 import osmanfindik.ibnulcevzi.repository.BookRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookService {
@@ -19,5 +20,13 @@ public class BookService {
 
 	public List<Book> getBooks () {
 		return bookRepository.findAll ();
+	}
+
+	public void addNewBook (Book book) {
+		Optional<Book> bookOptional = bookRepository.findBookByName (book.getName ());
+		if (bookOptional.isPresent ()) {
+			throw new IllegalStateException ("Book exists");
+		}
+		bookRepository.save (book);
 	}
 }

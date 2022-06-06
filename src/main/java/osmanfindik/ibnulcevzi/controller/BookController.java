@@ -1,9 +1,7 @@
 package osmanfindik.ibnulcevzi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import osmanfindik.ibnulcevzi.model.Book;
 import osmanfindik.ibnulcevzi.service.BookService;
 
@@ -23,5 +21,10 @@ public class BookController {
 	@GetMapping
 	public List<Book> getBooks () {
 		return bookService.getBooks ();
+	}
+
+	@PostMapping
+	public void registerNewBook (@RequestBody Book book) {
+		bookService.addNewBook (book);
 	}
 }
