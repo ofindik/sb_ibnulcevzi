@@ -54,8 +54,8 @@ public class BookControllerTest {
 	@Test
 	@WithMockUser(username = "admin", password = "password", roles = "USER")
 	public void when_There_Are_Two_Books_GetBooks_Should_Return_List_with_Two_Elements () throws Exception {
-		Book testbook1 = new Book (1L, "Testbbok", Status.AVAILABLE, LocalDateTime.of (2022, 1, 1, 0, 0, 0));
-		Book testbook2 = new Book (1L, "Testbbok", Status.AVAILABLE, LocalDateTime.of (2022, 1, 1, 0, 0, 0));
+		Book testbook1 = new Book (1L, "Testbbok1", Status.AVAILABLE, LocalDateTime.of (2022, 1, 1, 0, 0, 0));
+		Book testbook2 = new Book (2L, "Testbbok2", Status.AVAILABLE, LocalDateTime.of (2022, 1, 1, 0, 0, 0));
 		when (bookService.getBooks ()).thenReturn (Arrays.asList (testbook1, testbook2));
 		BookController bookController = new BookController (bookService);
 
